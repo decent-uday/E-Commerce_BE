@@ -1,5 +1,7 @@
 package com.ecommers.backend.entity;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,18 +25,21 @@ public class Product {
     @Id
     ObjectId id;
 
+    @NotBlank(message = "name should not be null for product!!!")
     @Indexed(name = "name")
     String name;
 
     String description;
 
+    @NotNull(message = "Price should be mentioned for Product!!")
     Integer price;
 
     Integer quantityInStock;
 
     String createdAt;
 
-    ObjectId categoryId;
+    @NotBlank(message = "Every Product should belong to some Category. Provide categoryId")
+    String categoryId;
 
     @CreatedDate
     Date dateCreated;

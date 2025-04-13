@@ -3,12 +3,16 @@ package com.ecommers.backend.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.Date;
 
+@Getter
+@Setter
 @Data
 public class ProductDto {
 
@@ -26,6 +30,7 @@ public class ProductDto {
 
     String createdAt;
 
+    @NotBlank(message = "categoryId should be given to save or update product!!!")
     ObjectId categoryId;
 
     @CreatedDate

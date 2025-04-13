@@ -1,15 +1,16 @@
 package com.ecommers.backend.service;
 
 import com.ecommers.backend.dto.CategoryDto;
+import com.ecommers.backend.dto.GenericResponse;
 import com.ecommers.backend.entity.Category;
 
 public interface CategoryService {
 
-    Category findCategoryByName(String name);
+    GenericResponse findCategoryByName(String name);
 
-    void saveCategory(CategoryDto Category);
+    GenericResponse saveCategory(Category Category);
 
-    Category updateCategory(CategoryDto CategoryDto);
+    GenericResponse updateCategory(CategoryDto CategoryDto);
 
-    void removeCategory(String name);
+    GenericResponse removeCategory(String name);
 }

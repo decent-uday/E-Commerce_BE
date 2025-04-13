@@ -7,6 +7,7 @@ import com.ecommers.backend.repository.ProductRepository;
 import com.ecommers.backend.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -49,7 +50,7 @@ public class ProductServiceImpl implements ProductService {
 
     public GenericResponse updateProduct(ProductDto productDto) {
         GenericResponse genericResponse = new GenericResponse();
-        if (productRepository.existsById(productDto.getId())) {
+        if (productRepository.existsById(new ObjectId(productDto.getId().toString()))) {
             ObjectMapper objectMapper = new ObjectMapper();
             Product product = objectMapper.convertValue(productDto, Product.class);
             productRepository.save(product);
