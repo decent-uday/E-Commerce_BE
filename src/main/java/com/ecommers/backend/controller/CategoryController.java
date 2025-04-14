@@ -25,19 +25,19 @@ public class CategoryController {
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
     }
 
-    @PostMapping("/{name}")
+    @GetMapping("/{name}")
     ResponseEntity<GenericResponse> retrieveCategory(@PathVariable("name") String name) {
         GenericResponse genericResponse = categoryService.findCategoryByName(name);
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
     }
 
-    @PostMapping("/update-category")
+    @PutMapping("/update-category")
     ResponseEntity<GenericResponse> updateCategory(@Valid @RequestBody CategoryDto Category) {
         GenericResponse genericResponse = categoryService.updateCategory(Category);
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
     }
 
-    @PostMapping("/remove/{name}")
+    @DeleteMapping("/remove/{name}")
     ResponseEntity<GenericResponse> deleteCategory(@PathVariable("name") String name) {
         GenericResponse genericResponse = categoryService.removeCategory(name);
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);

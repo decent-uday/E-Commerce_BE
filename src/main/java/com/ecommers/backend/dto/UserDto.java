@@ -1,5 +1,6 @@
 package com.ecommers.backend.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -15,9 +16,11 @@ import java.util.Date;
 @Setter
 @Data
 public class UserDto {
+
+    @JsonSerialize(using = ObjectIdSerializer.class)
     ObjectId id;
 
-    @NotBlank(message = "User Namew should not be null")
+    @NotBlank(message = "User Name should not be null")
     String name;
 
     String email;

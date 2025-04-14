@@ -1,5 +1,7 @@
 package com.ecommers.backend.entity;
 
+import com.ecommers.backend.dto.ObjectIdSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -22,6 +24,7 @@ import java.util.Date;
 @Document(collection = "product")
 public class Product {
 
+    @JsonSerialize(using = ObjectIdSerializer.class)
     @Id
     ObjectId id;
 
@@ -38,6 +41,7 @@ public class Product {
 
     String createdAt;
 
+    @JsonSerialize(using = ObjectIdSerializer.class)
     @NotBlank(message = "Every Product should belong to some Category. Provide categoryId")
     String categoryId;
 

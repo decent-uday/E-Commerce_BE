@@ -3,11 +3,11 @@ package com.ecommers.backend.service.impl;
 import com.ecommers.backend.dto.CategoryDto;
 import com.ecommers.backend.dto.GenericResponse;
 import com.ecommers.backend.entity.Category;
-import com.ecommers.backend.entity.Product;
 import com.ecommers.backend.repository.CategoryRepository;
 import com.ecommers.backend.service.CategoryService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -52,6 +52,11 @@ public class CategoryServiceImpl implements CategoryService {
 
     public GenericResponse updateCategory(CategoryDto categoryDto) {
         GenericResponse genericResponse = new GenericResponse();
+        if(categoryDto.getId() == null) {
+            genericResponse.setMessage("Please make sure that category id is present!!!");
+            genericResponse.setStatus(HttpStatus.NOT_ACCEPTABLE.toString());
+            return genericResponse;
+        }
         if (categoryRepository.existsById(categoryDto.getId())) {
             ObjectMapper objectMapper = new ObjectMapper();
             Category category = objectMapper.convertValue(categoryDto, Category.class);

@@ -25,19 +25,19 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
     }
 
-    @PostMapping("/{name}")
+    @GetMapping("/{name}")
     ResponseEntity<GenericResponse> retrieveProduct(@PathVariable("name") String name) {
         GenericResponse genericResponse = productService.findProductByName(name);
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
     }
 
-    @PostMapping("/update-product")
+    @PutMapping("/update-product")
     ResponseEntity<GenericResponse> updateProduct(@Valid @RequestBody ProductDto product) {
         GenericResponse genericResponse = productService.updateProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);
     }
 
-    @PostMapping("/remove/{name}")
+    @DeleteMapping("/remove/{name}")
     ResponseEntity<GenericResponse> deleteProduct(@PathVariable("name") String name) {
         GenericResponse genericResponse = productService.removeProduct(name);
         return ResponseEntity.status(HttpStatus.CREATED).body(genericResponse);

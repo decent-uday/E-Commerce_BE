@@ -49,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public GenericResponse updateProduct(ProductDto productDto) {
+        log.info("ProductServiceImpl :: updateProduct : update the product with id " + productDto.getId() );
         GenericResponse genericResponse = new GenericResponse();
         if (productRepository.existsById(new ObjectId(productDto.getId().toString()))) {
             ObjectMapper objectMapper = new ObjectMapper();

@@ -1,5 +1,7 @@
 package com.ecommers.backend.entity;
 
+import com.ecommers.backend.dto.ObjectIdSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +21,7 @@ import java.util.Date;
 @Document(collection = "Category")
 public class Category {
 
+    @JsonSerialize(using = ObjectIdSerializer.class)
     @Id
     ObjectId id;
 
